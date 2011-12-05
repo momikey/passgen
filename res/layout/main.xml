@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/generatebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="generatePassword"
+        android:text="@string/generatelabel" />
+
+    <Button
+        android:id="@+id/optionsbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="passwordOptions"
+        android:text="@string/optionslabel" />
+
+    <TextView
+        android:id="@+id/generatingtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dip"
+        android:text="@string/workingtext" />
+
+    <TextView
+        android:id="@+id/passwordtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dip"
+        android:layout_marginTop="80dip"
+        android:text="@string/passworddisplay"
+        android:textSize="40dip"
+        android:typeface="monospace" />
+
+    <Button
+        android:id="@+id/skipbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="skipAnimation"
+        android:text="@string/skiplabel" />
+
+</LinearLayout>

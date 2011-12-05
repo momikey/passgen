@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, PasswordGenerator!</string>
+    <string name="app_name">Passgen</string>
+    <string name="generatelabel">Generate Password</string>
+    <string name="optionslabel">Password Options</string>
+    <string name="skiplabel">Skip Animation</string>
+    <string name="workingtext">Generating Password...</string>
+    <string name="passworddisplay">Password</string>
+    <string name="minlengthtext">Minimum Length</string>
+    <string name="minlengthprompt">Enter the minimum password length:</string>
+    <string name="minlengthsummary">The minimum password length</string>
+    <string name="maxlengthtext">Maximum Length</string>
+    <string name="maxlengthprompt">Enter the maximum password length</string>
+    <string name="maxlengthsummary">The maximum password length</string>
+    <string name="uppercasetext">Use Uppercase</string>
+    <string name="uppercasesummary">Check this to generate passwords with uppercase letters</string>
+    <string name="numberstext">Use Numbers</string>
+    <string name="numberssummary">Check this to generate passwords with numbers</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lowercase">abcdefghijklmnopqrstuvwxyz</string>
+    <string name="uppercase">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="numbers">0123456789</string>
+
+    
+</resources>

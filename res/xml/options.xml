@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference android:defaultValue="6" android:key="minlength" android:dialogTitle="@string/minlengthtext" android:dialogMessage="@string/minlengthprompt" android:title="@string/minlengthtext" android:summary="@string/minlengthsummary"/>
+    <EditTextPreference android:dialogTitle="@string/maxlengthtext" android:dialogMessage="@string/maxlengthprompt" android:title="@string/maxlengthtext" android:defaultValue="10" android:key="maxlength" android:summary="@string/maxlengthsummary"/>
+    <CheckBoxPreference android:key="uppercase" android:summary="@string/uppercasesummary" android:defaultValue="true" android:title="@string/uppercasetext"/>
+    <CheckBoxPreference android:key="numbers" android:summary="@string/numberssummary" android:defaultValue="true" android:title="@string/numberstext"/>
+
+    
+
+</PreferenceScreen>
