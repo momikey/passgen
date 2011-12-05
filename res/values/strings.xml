@@ -18,5 +18,8 @@
     <string name="uppercasesummary">Check this to generate passwords with uppercase letters</string>
     <string name="numberstext">Use Numbers</string>
     <string name="numberssummary">Check this to generate passwords with numbers</string>
+    <string name="viewsavedbutton">My Passwords</string>
+    <string name="savebutton">Save Password</string>
+    <string name="listitemdelete">Remove</string>
 
 </resources>

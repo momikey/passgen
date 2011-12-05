@@ -1,11 +1,17 @@
 package net.potterpcs.passgen;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.HashSet;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,17 +32,19 @@ public class PasswordGenerator extends Activity {
 	SharedPreferences preferences;
 	SpannableString oldPassword;
 	String possibleChars;
+	String genPassword;
 	Random rng;
 	
 	static final int MIN_PW_LENGTH = 6;
 	static final int MAX_PW_LENGTH = 10;
 	static final String THREAD_PW_KEY = "password";
 	static final String THREAD_PW_CHARS_KEY = "numchars";
-	static final long THREAD_SLEEP_MILLIS = 20;
+	static final long THREAD_SLEEP_MILLIS = 30;
 	static final String PREFS_KEY_MINLENGTH = "minlength";
 	static final String PREFS_KEY_MAXLENGTH = "maxlength";
 	static final String PREFS_KEY_UPPERCASE = "uppercase";
 	static final String PREFS_KEY_NUMBERS = "numbers";
+	static final String SAVED_PASSWORDS_FILE = "saved.txt";
 	
 	
 	private TextView passwordText;
@@ -44,6 +52,7 @@ public class PasswordGenerator extends Activity {
 	private Handler passHandler;
 	private Button skipButton;
 	private TextView generatingText;
+	private boolean saved;
 	
 	boolean threadAlive;
 	
@@ -72,14 +81,19 @@ public class PasswordGenerator extends Activity {
         	public void handleMessage(Message msg) {
         		Bundle b = msg.getData();
         		String pw = b.getString(THREAD_PW_KEY);
-        		int cs = b.getInt(THREAD_PW_CHARS_KEY);
+//        		int cs = b.getInt(THREAD_PW_CHARS_KEY);
         		SpannableString span = new SpannableString(pw);
-        		span.setSpan(new ForegroundColorSpan(Color.RED), 0, cs, 
-        				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        		
-        		if (cs != pw.length()) {
-	        		span.setSpan(new ForegroundColorSpan(Color.GRAY), cs, pw.length(),
-	        				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        		span.setSpan(new ForegroundColorSpan(Color.RED), 0, cs, 
+//        				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        		
+//        		if (cs != pw.length()) {
+//	        		span.setSpan(new ForegroundColorSpan(Color.GRAY), cs, pw.length(),
+//	        				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        		}
+        		for (int i = 0; i < pw.length(); ++i) {
+        			span.setSpan(new ForegroundColorSpan(
+        					pw.charAt(i) == genPassword.charAt(i) ? Color.RED : Color.GRAY),
+        					i, i+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         		}
         		passwordText.setText(span, TextView.BufferType.SPANNABLE);
         		
@@ -87,7 +101,7 @@ public class PasswordGenerator extends Activity {
         			passwordText.setVisibility(View.VISIBLE);
         		}
         		
-        		if (cs == pw.length()) {
+        		if (pw.contentEquals(genPassword)) {
         			skipButton.setVisibility(View.INVISIBLE);
         			generatingText.setVisibility(View.INVISIBLE);
         		}
@@ -132,10 +146,12 @@ public class PasswordGenerator extends Activity {
     		//    			passwordText.setVisibility(View.VISIBLE);
     		//    		}
     	}
+    	genPassword = new String(newPassword);
+    	saved = false;
 
     	if (!threadAlive) {
     		passThread = new PasswordSpinner();
-    		passThread.doSetup(passHandler, new String(newPassword));
+    		passThread.doSetup(passHandler, genPassword);
     		skipButton.setVisibility(View.VISIBLE);
     		generatingText.setVisibility(View.VISIBLE);
     		threadAlive = true;
@@ -149,6 +165,34 @@ public class PasswordGenerator extends Activity {
     
     public void skipAnimation(View v) {
     	threadAlive = false;
+    }
+    
+    public void savePassword(View v) {
+    	FileOutputStream fos = null;
+    	try {
+    		if (!saved) {
+    			fos = openFileOutput(SAVED_PASSWORDS_FILE, Context.MODE_APPEND);
+    			fos.write((genPassword + "\n").getBytes());
+    			saved = true;
+    		}
+    	} catch (FileNotFoundException e) {
+    		// Log exception
+    	} catch (IOException e) {
+    		// Log exception
+    	} finally {
+    		if (fos != null) {
+    			try {
+    				fos.flush();
+    				fos.close();
+    			} catch (IOException e) {
+    				// do nothing
+    			}
+    		}
+    	}
+    }
+    
+    public void viewPasswords(View v) {
+    	startActivity(new Intent(this, PasswordViewer.class));
     }
     
     private class PasswordSpinner extends Thread {
@@ -182,17 +226,25 @@ public class PasswordGenerator extends Activity {
 					}
 
 					// One step of the animation
-					for (int i = charsSoFar; i < animatedPassword.length; ++i) {
-						char c = possibleChars.charAt(rng.nextInt(possibleChars.length()));
-						animatedPassword[i] = c;
+//					for (int i = charsSoFar; i < animatedPassword.length; ++i) {
+//						char c = possibleChars.charAt(rng.nextInt(possibleChars.length()));
+//						animatedPassword[i] = c;
+//					}
+					charsSoFar = 0;
+					for (int i = 0; i < animatedPassword.length; ++i) {
+						if (animatedPassword[i] != password.charAt(i)) {
+							char c = possibleChars.charAt(rng.nextInt(possibleChars.length()));
+							animatedPassword[i] = c;
+							++charsSoFar;
+						}
 					}
 					apString = new String(animatedPassword);
 
-					if (animatedPassword[charsSoFar] == password.charAt(charsSoFar)) {
-						Log.v(TAG, Integer.toString(charsSoFar));
-						Log.v(TAG, password + ", " + apString);
-						++charsSoFar;
-					}
+//					if (animatedPassword[charsSoFar] == password.charAt(charsSoFar)) {
+//						Log.v(TAG, Integer.toString(charsSoFar));
+//						Log.v(TAG, password + ", " + apString);
+//						++charsSoFar;
+//					}
 
 					if (password.contentEquals(apString)) {
 						threadAlive = false;

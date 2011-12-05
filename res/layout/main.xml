@@ -5,18 +5,18 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/generatebutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="generatePassword"
-        android:text="@string/generatelabel" />
-
-    <Button
         android:id="@+id/optionsbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="passwordOptions"
         android:text="@string/optionslabel" />
+
+    <Button
+        android:id="@+id/generatebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="generatePassword"
+        android:text="@string/generatelabel" />
 
     <TextView
         android:id="@+id/generatingtext"
@@ -43,5 +43,29 @@
         android:layout_height="wrap_content"
         android:onClick="skipAnimation"
         android:text="@string/skiplabel" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom" >
+
+        <Button
+            android:id="@+id/viewpasswords"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="viewPasswords"
+            android:text="@string/viewsavedbutton" />
+
+        <Button
+            android:id="@+id/savepassword"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:onClick="savePassword"
+            android:text="@string/savebutton" />
+
+    </LinearLayout>
 
 </LinearLayout>
