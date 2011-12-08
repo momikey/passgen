@@ -4,31 +4,39 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/optionsbutton"
+    <LinearLayout
+        android:id="@+id/genlayoutland"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="passwordOptions"
-        android:text="@string/optionslabel"
-        android:layout_weight="0" />
+        android:layout_weight="0"
+        android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/generatebutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="generatePassword"
-        android:text="@string/generatelabel"
-        android:layout_weight="0" />
+        <Button
+            android:id="@+id/optionsbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="passwordOptions"
+            android:layout_weight="1"
+            android:text="@string/optionslabel" />
+
+        <Button
+            android:id="@+id/generatebutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="generatePassword"
+            android:layout_weight="1"
+            android:text="@string/generatelabel" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/generatingtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dip"
-        android:text="@string/workingtext"
-        android:layout_weight="0" />
-
+        android:layout_marginTop="20dip"
+        android:layout_weight="0"
+        android:text="@string/workingtext" />
 
     <TextView
         android:id="@+id/passwordtext"
@@ -45,9 +53,9 @@
         android:id="@+id/skipbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:onClick="skipAnimation"
-        android:text="@string/skiplabel"
-        android:layout_weight="0" />
+        android:text="@string/skiplabel" />
 
     <LinearLayout
         android:id="@+id/savebuttonslayout"
@@ -71,7 +79,6 @@
             android:layout_weight="2"
             android:onClick="savePassword"
             android:text="@string/savebutton" />
-
     </LinearLayout>
 
 </LinearLayout>

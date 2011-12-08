@@ -4,14 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.HashSet;
 import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,7 +25,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class PasswordGenerator extends Activity {
-    /** Called when the activity is first created. */
 	Resources resources;
 	SharedPreferences preferences;
 	SpannableString oldPassword;
@@ -61,11 +58,11 @@ public class PasswordGenerator extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         resources = getResources();
-//        preferences = getPreferences(0);
         
         skipButton = (Button) findViewById(R.id.skipbutton);
         generatingText = (TextView) findViewById(R.id.generatingtext);
         passwordText = (TextView) findViewById(R.id.passwordtext);
+
         if (oldPassword != null) {
         	passwordText.setText(oldPassword, TextView.BufferType.SPANNABLE);
         } else {

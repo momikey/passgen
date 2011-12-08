@@ -21,5 +21,7 @@
     <string name="viewsavedbutton">My Passwords</string>
     <string name="savebutton">Save Password</string>
     <string name="listitemdelete">Remove</string>
+    <string name="ctxcopy">Copy to Clipboard</string>
+    <string name="ctxremove">Remove</string>
 
 </resources>

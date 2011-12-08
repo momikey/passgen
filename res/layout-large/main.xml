@@ -26,9 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dip"
+        android:layout_weight="0"
         android:text="@string/workingtext"
-        android:layout_weight="0" />
-
+        android:textSize="24dip" />
 
     <TextView
         android:id="@+id/passwordtext"
@@ -38,7 +38,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/passworddisplay"
-        android:textSize="40dip"
+        android:textSize="48dip"
         android:typeface="monospace" />
 
     <Button
