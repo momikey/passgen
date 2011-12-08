@@ -9,14 +9,17 @@ import java.util.Arrays;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 public class PasswordViewer extends ListActivity {
 	private ArrayList<String> passwordList;
@@ -28,6 +31,8 @@ public class PasswordViewer extends ListActivity {
 		super.onCreate(savedInstanceState);
 		passwordList = new ArrayList<String>();
 		listChanged = false;
+		TextView header = new TextView(this);
+		getListView().addHeaderView(header);
 
 		openFile();
 		

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, PasswordGenerator!</string>
-    <string name="app_name">Passgen</string>
+    <string name="app_name">Mobile Keymaker</string>
     <string name="generatelabel">Generate Password</string>
     <string name="optionslabel">Password Options</string>
     <string name="skiplabel">Skip Animation</string>
@@ -23,5 +21,6 @@
     <string name="listitemdelete">Remove</string>
     <string name="ctxcopy">Copy to Clipboard</string>
     <string name="ctxremove">Remove</string>
+    <string name="savedlistheader">My Saved Passwords</string>
 
 </resources>
