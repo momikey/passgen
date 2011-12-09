@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mobile Keymaker</string>
+    <string name="app_name">PassMaker Mobile</string>
     <string name="generatelabel">Generate Password</string>
     <string name="optionslabel">Password Options</string>
     <string name="skiplabel">Skip Animation</string>
